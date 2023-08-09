@@ -1,0 +1,30 @@
+server.port: 8081
+
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        hbm2ddl.auto: none
+  datasource:
+    url: jdbc:h2:mem:tool_rental;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH
+    username: sa
+    password: password
+    driver-class-name: org.h2.Driver
+  flyway:
+    url: jdbc:h2:mem:tool_rental;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH
+    user: sa
+    password: password
+    driver-class-name: org.h2.Driver
+    locations: classpath:db/
+  mvc.log-request-details: true
+  h2.console.enabled: true
+logging.level:
+  org:
+    springframework.web: DEBUG
+    hibernate: ERROR
+
+server.servlet:
+  context-path: /api/tool-rental
+  register-default-servlet: true
