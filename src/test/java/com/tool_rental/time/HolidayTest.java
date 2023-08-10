@@ -42,7 +42,7 @@ class HolidayTest {
         assertThat(Holiday.LABOR_DAY.isObserved(date))
                 .isEqualTo(expectedResult);
     }
-    
+
     private static Stream<Arguments> provideDatesForHolidayCheck() {
         return Stream.of(
                 Arguments.of(LocalDate.of(2023, 7, 4), true),

@@ -4,7 +4,9 @@ import com.tool_rental.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.Collections;
+import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,8 +40,6 @@ public class DateClassificationService {
         WEEKEND
     }
 
-    // This helps us avoid passing around a map; this helps mitigate some of the safety concerns that come with them
-    // while making it clearer what the data contained within represents
     public record ClassifiedDates(Set<LocalDate> holidays,
                                   Set<LocalDate> weekdays,
                                   Set<LocalDate> weekends) {

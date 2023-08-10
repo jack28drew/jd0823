@@ -50,6 +50,7 @@ class StringUtilsTest {
                 Arguments.of("$1.99", 199)
         );
     }
+
     @ParameterizedTest
     @MethodSource("provideMonetaryStringsForUSDParserCheck")
     void testUsdStringToCentsParser(String usdString, int expectedCents) {

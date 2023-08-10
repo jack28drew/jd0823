@@ -25,8 +25,9 @@ public enum Holiday {
 
     /**
      * Constructor for holidays with fixed dates, providing both the month and day of the holiday
-     * @param month
-     * @param day
+     *
+     * @param month the month of the holiday
+     * @param day the day of the month on which the holiday is observed
      */
     Holiday(int month, int day) {
         this.HOLIDAY_DATE = MonthDay.of(month, day);
@@ -34,8 +35,9 @@ public enum Holiday {
     }
 
     /**
-     * Constructor for holidays that do not have a fixed date, but are determined by a set of rules instead.
-     * Holidays without a fixed date will need to override the isObserved() method to define those rules.
+     * Constructor for holidays that do not have a fixed date, but are determined by a
+     * set of rules instead. Holidays without a fixed date will need to override the
+     * {@link #isObserved(LocalDate) isObserved} method to define those rules.
      */
     Holiday() {
         this.HOLIDAY_DATE = null;
@@ -43,9 +45,10 @@ public enum Holiday {
     }
 
     /**
-     * Returns true if the provided date is the observation date of any holidays enumerated here.
-     * @param date
-     * @return
+     * Returns true if the provided date is the observation date of any holidays defined here.
+     *
+     * @param date {@link java.time.LocalDate}
+     * @return true if a holiday is observed on the given date
      */
     public static boolean isHoliday(LocalDate date) {
         return Arrays.stream(Holiday.values())
