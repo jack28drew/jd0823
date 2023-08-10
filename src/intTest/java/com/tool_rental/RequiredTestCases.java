@@ -28,7 +28,7 @@ public class RequiredTestCases extends AbstractApiTest {
     void test1() {
         var requestBody = buildRequestBody(
                 "JAKR",
-                "09/15/15",
+                "09/03/15",
                 5,
                 101
         );
