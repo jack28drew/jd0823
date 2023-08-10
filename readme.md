@@ -23,7 +23,7 @@ To Run the integration test suite with gradle:
 ```
 ### Required test cases
 There are a couple ways to validate the test cases requested in the requirements:
-- jUnit tests can be found at `src/intTest/java/com/tool_rental/RequiredTestCases.java`, and we can execute them by running.
+- jUnit tests can be found at [`src/intTest/java/com/tool_rental/RequiredTestCases.java`](https://github.com/jack28drew/jd0823/blob/main/src/intTest/java/com/tool_rental/RequiredTestCases.java); we can execute them by running.
 ```console
 ./gradlew clean intTest --tests RequiredTestCases
 ```
