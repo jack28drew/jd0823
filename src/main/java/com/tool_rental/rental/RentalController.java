@@ -35,10 +35,10 @@ class RentalController {
     }
 
     record CheckoutRequest(@NotBlank String toolCode,
-                                  @NotNull LocalDate checkoutDate,
-                                  @Min(value = 1, message = "Tools cannot be rented for less than 1 day") Integer rentalDays,
-                                  @Min(value = 0, message = "A negative discount cannot be applied!")
-                                  @Max(value = 100, message = "A discount greater than 100 percent cannot be applied!") Integer discountPercent) {
+                           @NotNull LocalDate checkoutDate,
+                           @Min(value = 1, message = "Tools cannot be rented for less than 1 day") Integer rentalDays,
+                           @Min(value = 0, message = "A negative discount cannot be applied!")
+                           @Max(value = 100, message = "A discount greater than 100 percent cannot be applied!") Integer discountPercent) {
         @JsonCreator
         CheckoutRequest(String toolCode, LocalDate checkoutDate, Integer rentalDays, Integer discountPercent) {
             this.toolCode = toolCode;
