@@ -23,37 +23,37 @@ To Run the integration test suite with gradle:
 ```
 ### Required test cases
 There are a couple ways to validate the test cases requested in the requirements:
-- jUnit tests can be found at [`src/intTest/java/com/tool_rental/RequiredTestCases.java`](https://github.com/jack28drew/jd0823/blob/main/src/intTest/java/com/tool_rental/RequiredTestCases.java); we can execute them by running.
+- jUnit tests can be found at [`src/intTest/java/com/tool_rental/RequiredTestCases.java`](https://github.com/jack28drew/jd0823/blob/main/src/intTest/java/com/tool_rental/RequiredTestCases.java); we can execute them by running:
 ```console
 ./gradlew clean intTest --tests RequiredTestCases
 ```
 - We can also validate the inputs in a more interactive way by manually sending requests to the `/checkout` endpoint and then validating the response.
-	- Start the application.
+	- Start the application:
 	```console
 	./gradlew clean bootRun
 	```
 	- Execute cURL commands for each of the provided test cases.
-		- test case 1
+		- test case 1:
 		```console
 		curl --header "Content-Type: application/json" --request POST http://localhost:8081/api/tool-rental/checkout --data '{ "tool_code": "JAKR", "checkout_date": "09/03/15", "rental_days": 5, "discount_percent": 101 }'
 		```
-		- test case 2
+		- test case 2:
 		```console
 		curl --header "Content-Type: application/json" --request POST http://localhost:8081/api/tool-rental/checkout --data '{ "tool_code": "LADW", "checkout_date": "07/02/20", "rental_days": 3, "discount_percent": 10 }'
 		```
-		- test case 3
+		- test case 3:
 		```console
 		curl --header "Content-Type: application/json" --request POST http://localhost:8081/api/tool-rental/checkout --data '{ "tool_code": "CHNS", "checkout_date": "07/02/15", "rental_days": 5, "discount_percent": 25 }'
 		```
-		- test case 4
+		- test case 4:
 		```console
 		curl --header "Content-Type: application/json" --request POST http://localhost:8081/api/tool-rental/checkout --data '{ "tool_code": "JAKD", "checkout_date": "09/03/15", "rental_days": 6, "discount_percent": 0 }'
 		```
-		- test case 5
+		- test case 5:
 		```console
 		curl --header "Content-Type: application/json" --request POST http://localhost:8081/api/tool-rental/checkout --data '{ "tool_code": "JAKR", "checkout_date": "07/02/15", "rental_days": 9, "discount_percent": 0 }'
 		```
-		- test case 6
+		- test case 6:
 		```console
 		curl --header "Content-Type: application/json" --request POST http://localhost:8081/api/tool-rental/checkout --data '{ "tool_code": "JAKR", "checkout_date": "07/02/20", "rental_days": 4, "discount_percent": 50 }'
 		```

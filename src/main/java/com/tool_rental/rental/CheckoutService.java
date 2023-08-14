@@ -31,10 +31,7 @@ public class CheckoutService {
                 .orElseThrow(() -> new IllegalArgumentException("No tool found for code [%s]".formatted(toolCode)));
 
         var dueDate = calculateDueDate(checkoutDate, rentalDays);
-
-        var classifiedDates = dateClassificationService.classifyDatesInRange(checkoutDate.plusDays(1), dueDate);
-
-        var chargeableDays = calculateChargeableDays(tool, classifiedDates);
+        var chargeableDays = calculateChargeableDays(tool, checkoutDate, dueDate);
         var preDiscountChargeCents = calculatePreDiscountCharge(chargeableDays, tool);
         var discountAmountCents = calculateDiscount(preDiscountChargeCents, discountPercent);
         var finalChargeCents = calculateFinalCharge(preDiscountChargeCents, discountAmountCents);
@@ -56,7 +53,8 @@ public class CheckoutService {
         return checkoutDate.plusDays(rentalDays);
     }
 
-    private int calculateChargeableDays(Tool tool, DateClassificationService.ClassifiedDates classifiedDates) {
+    private int calculateChargeableDays(Tool tool, LocalDate checkoutDate, LocalDate dueDate) {
+        var classifiedDates = dateClassificationService.classifyDatesInRange(checkoutDate.plusDays(1), dueDate);
         var toolType = tool.getType();
 
         int chargeableDays = 0;
@@ -78,7 +76,7 @@ public class CheckoutService {
 
     private int calculateDiscount(int preDiscountChargeCents, int discountPercent) {
         return new BigDecimal(preDiscountChargeCents)
-                .multiply(new BigDecimal(discountPercent).movePointLeft(2))  // shift decimal point right to convert to decimal
+                .multiply(new BigDecimal(discountPercent).movePointLeft(2))  // shift decimal point left to convert to decimal
                 .setScale(0, RoundingMode.HALF_UP)  // round away any fractional cents
                 .intValue();
     }
